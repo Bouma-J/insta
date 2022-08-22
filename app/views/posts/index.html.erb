@@ -1,0 +1,43 @@
+<!-- Page Header-->
+<header class="masthead" style="background-image: url(<%= asset_path 'step1.jpg' %>)">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Application Insta</h1>
+                    <span class="subheading">partagez vos photos avec vos proches</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+       <!-- <p id="notice"><%= notice %></p>-->
+        <% @posts.each do |post| %>
+          <!-- Post preview-->
+            <div class="post-preview">
+              <%= link_to post_path(post) do %>
+                <h2 class="post-title"><%= post.content %></h2>
+                
+                <%= image_tag(post.image.url) if post.image && post.image.url %>
+              <% end %>
+              <p class="post-meta">Publié par
+                <a href="<%=user_path(post.user.id)%>"> <%=post.user.name%> </a>
+                le : <%= post.created_at %>
+              </p>
+              <p class="post-meta">
+              <% if post.user_id == current_user.id %>
+                <td><%= link_to 'Modifier', edit_post_path(post) %></td>
+                <td><%= link_to 'supprimer', post, method: :delete, data: { confirm: 'Etes-vous sûr ?' } %></td>
+              <% end  %>
+              </p>
+            </div>
+            <!-- Divider-->
+            <hr class="my-4" />
+          <% end %>
+        </div>
+    </div>
+</div>

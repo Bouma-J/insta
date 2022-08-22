@@ -1,0 +1,15 @@
+<h1>Votre post a été publié avec succes !</h1>
+
+<% @userSent = User.find(@post.user_id) %>
+
+<h4>name: <%= @userSent.name%></h4>
+
+<h4>Confirmation du contenu de la demande</h4>
+
+<p>content: <%= @post.content%></p>
+
+<p>
+    <strong>Image:</strong>
+    <%= image_tag @post.image.url %>
+</p>
+

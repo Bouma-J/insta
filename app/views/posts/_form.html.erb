@@ -1,0 +1,49 @@
+<!-- Page Header-->
+<header class="masthead" style="background-image: url(<%= asset_path 'step4.jpg' %>)">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>publier votre post</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">            
+                <div class="my-5">
+                  <% if @post.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= @post.errors.count %> erreur se produisent.</h2>
+                    <ul>
+                        <% @post.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                        <% end %>
+                    </ul>
+                  </div>
+                  <% end %>
+                <%= form_with(model: @post, local: true,url: choose_new_or_edit, name: "sentMessage", id: "contactForm") do |form| %>
+                    <div class="form-floating">
+                        <%= form.text_field :content, placeholder: "Entrez le contenu du poste...", class: "form-control", id: "inputTitle" %>
+                        <label for="inputTitle">Content</label>
+                    </div>
+                    <br />
+                    <div class="field">
+                        <%= form.label :image %>
+                        <!-- Au retour de l'écran de confirmation vers le nouvel écran de création, -->
+                        <!-- Description pour afficher l'image téléchargée -->
+                        <%= image_tag(post.image.url) if post.image && post.image.url %>
+                        <%= form.file_field :image %>
+                        <%= form.hidden_field :image_cache %>
+                    </div>
+                    <%= form.submit nil, class: "btn btn-primary text-uppercase" %>
+                <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

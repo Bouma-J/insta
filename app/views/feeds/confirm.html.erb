@@ -1,0 +1,12 @@
+<h1>Ecran de validation</h1>
+<%= form_with(model: @feed, url: feeds_path, local: true) do |form| %>
+  <!-- Sur l'écran de confirmation description pour afficher l'image téléchargée -->
+  <%= image_tag(@feed.image.url) if @feed.image && @feed.image.url %>
+  <%= form.hidden_field :image_cache %>
+  <%= form.submit "Poster" %>
+<% end %>
+
+<%= form_with(model:@feed, url:new_feed_path, local:true, method:"get") do |form| %>
+  <%= form.hidden_field :image_cache %>
+  <%= form.submit "Retourner", name: "back" %>
+<% end %>

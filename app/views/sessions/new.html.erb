@@ -1,0 +1,50 @@
+<!-- Page Header-->
+<header class="masthead" style="background-image: url(<%= asset_path 'step4.jpg' %>)">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Page de connexion</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="my-5">
+                 
+                <%= form_with(scope: :session, local: true,url: sessions_path, name: "sentMessage", id: "contactForm") do |form| %>
+                    <div class="form-floating">
+                        <%= form.email_field :email, placeholder: "Entrez votre e-mail...", class: "form-control", id: "inputTitle" %>
+                        <label for="inputTitle">E-mail</label>
+                    </div>
+                    <div class="form-floating">
+                        <%= form.password_field :password, placeholder: "Entrez votre mot de passe...", class: "form-control", id: "inputTitle" %>
+                        <label for="inputTitle">Password</label>
+                    </div>
+                    <br />
+                    <%= form.submit nil, class: "btn btn-primary text-uppercase" %>
+                <% end %>
+                </div>   
+            </div>
+        </div>
+    </div>
+</main>
+  
+
+
+<!-- <h1>Log in</h1>
+<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.submit "Log in" %>
+<% end %>-->

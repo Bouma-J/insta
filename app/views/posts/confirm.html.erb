@@ -1,0 +1,45 @@
+<!-- Page Header-->
+<header class="masthead" style="background-image: url(<%= asset_path 'step2.jpg' %>)">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Écran de confirmation</h1>
+                    <span class="subheading">pour une double confirmation</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<!--<main class="mb-4">
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <span class="subheading">Envoyer avec le contenu suivant.</span>
+          <div class="my-5">
+          <%= form_with(model: @post, local: true) do |form| %>
+            <%= form.hidden_field :content %>
+            <p>Text : <%= @post.content %></p>
+            <%= form.submit  "register", class: "btn btn-primary text-uppercase" %>
+            <% end %>
+            <br>
+            <%= link_to 'Return', :back %>
+          </div>
+            </div>
+        </div>
+    </div>
+</main>-->
+<%= form_with(model: @post, url: posts_path, local: true) do |form| %>
+  <!-- Sur l'écran de confirmation description pour afficher l'image téléchargée -->
+  <%= form.hidden_field :content %>
+  <p>Text : <%= @post.content %></p>
+  <%= image_tag(@post.image.url) if @post.image && @post.image.url %>
+  <%= form.hidden_field :image_cache %>
+  <%= form.submit "Poster" %>
+<% end %>
+
+<%= form_with(model:@post, url:new_post_path, local:true, method:"get") do |form| %>
+  <%= form.hidden_field :image_cache %>
+  <%= form.submit "Retourner", name: "back" %>
+<% end %>

@@ -1,0 +1,87 @@
+<!-- Page Header-->
+<header class="masthead" style="background-image: url(<%= asset_path 'step4.jpg' %>)">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Page de modification de l'utilisateur</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+            
+                <div class="my-5">
+                 
+                <%= form_with(model: @user, local: true, url: user_path, name: "sentMessage", id: "contactForm") do |form| %>
+                    <div class="form-floating">
+                        <%= form.text_field :name, placeholder: "Entrez votre nom...", class: "form-control", id: "inputTitle" %>
+                        <label for="inputTitle">Name</label>
+                    </div>
+                    <div class="form-floating">
+                        <%= form.email_field :email, placeholder: "Entrez votre e-mail...", class: "form-control", id: "inputTitle" %>
+                        <label for="inputTitle">E-mail</label>
+                    </div>
+                    <div class="form-floating">
+                        <%= form.password_field :password, placeholder: "Entrez votre mot de passe...", class: "form-control", id: "inputTitle" %>
+                        <label for="inputTitle">Password</label>
+                    </div>
+                    <div class="form-floating">
+                        <%= form.password_field :password_confirmation, placeholder: "confirmer votre mot de passe...", class: "form-control", id: "inputTitle" %>
+                        <label for="inputTitle">Password confirmation</label>
+                    </div>
+                    <br />
+                    <div class="field">
+                        <%= form.label :image %>
+                        <!-- Au retour de l'écran de confirmation vers le nouvel écran de création, -->
+                        <!-- Description pour afficher l'image téléchargée -->
+                        <%= image_tag(@user.image.url) if @user.image && @user.image.url %>
+                        <%= form.file_field :image %>
+                        <%= form.hidden_field :image_cache %>
+                    </div>
+                    <br />
+                    <%= form.submit nil, class: "btn btn-primary text-uppercase" %>
+                <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+
+<!--<h1>Sign up</h1>
+
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this <%= @user.name %> from being saved:</h2>
+    <ul>
+    <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %> <br> <br>
+
+  <%= f.label :email %>
+  <%= f.email_field :email %><br> <br>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %><br> <br>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %><br> <br>
+
+  <%= f.submit "Create my account" %>
+<% end %>-->

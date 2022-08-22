@@ -1,0 +1,43 @@
+<!-- Page Header-->
+<header class="masthead" style="background-image: url(<%= asset_path 'step3.jpg' %>)">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>Écran de détails de l'utilisateur</h1>
+                    <!--<span class="subheading">pour une double confirmation</span>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="my-5">
+                    <h1>Page de : <%= @user.name %></h1>
+                    <p>
+                        <strong>Adresse e-mail : </strong>
+                        <%= @user.email %>
+                    </p>
+                    <p>
+                      <strong>Image:</strong>
+                      <%= image_tag @user.image.url if @user.image && @user.image.url %>
+                    </p>
+                    <% if @user.id == current_user.id %>
+                       <%= link_to 'Edit', edit_user_path(@user.id) %> |
+                    <% end  %>
+                    <%= link_to 'Back', posts_path %>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+<!-- <h1>Page de : <%= @user.name %></h1>
+
+<p>Adresse e-mail : <%= @user.email %></p> -->
